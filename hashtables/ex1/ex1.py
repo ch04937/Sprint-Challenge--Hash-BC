@@ -12,8 +12,20 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    # loop through length and insert weights, length as index
+    for index in range(length):
+        hash_table_insert(ht, weights[index], index)
 
-    return None
+    # for every index in hashtable retrieve all in HashTable
+    for index in range(length):
+        # check to see if hash table contains an entry
+        next_index = hash_table_retrieve(ht, (limit - weights[index]))
+        if next_index:
+            # if if does we found the two items that sum up to the limit
+            if next_index > index:
+                return [next_index, index]
+            else:
+                return [index, next_index]
 
 
 def print_answer(answer):
